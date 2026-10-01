@@ -52,10 +52,42 @@ class AspiradorTaula(Aspirador):
 
 class AspiradorReflex(Aspirador):
     def actua(self, percepcio: dict):
-        """ TODO """
+        if not percepcio["Net"]:
+            return "A"
+        if percepcio["Loc"] == 0:
+            return "D"
+
+        return "E"
+
+        
 
 
 class AspiradorMemoria(Aspirador):
+    def __init__(self):
+        super().__init__()
+        self.habitacions_netegades: set[int] = set()
+
     def actua(self, percepcio: dict):
-        """ TODO """
+        loc = percepcio["Loc"] #Loc: 0 -> Esquerra , 1-> Dreta
+        net = percepcio["Net"] #net: False-> habitacio bruta, True-> habitacio neta
+
+        # recuperamos la memoria del turno anterior 
+        netes = self.get_memoria(1)
+
+        if netes is None: # si es el primer turno, aun no hay nada guardado 
+            netes = set()
+
+        netes.add(loc)
+
+        #guardamos el recuerdo para el turno siguiente
+        self.set_memoria(netes)
+
+        #decidimos
+        if not net:
+            return "A"
+        if len(netes) == 2:
+            return "S" #ya se que las dos estan limpias -> parar
+        return "D" if loc == 0 else "E" # moverse a la otra 
+
+       
 

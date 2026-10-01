@@ -1,7 +1,7 @@
-from aspirador import joc
+from aspirador import joc, agent
 
 
-agents = []
+agents = [agent.AspiradorMemoria()]
 
 hab = joc.Aspirador(agents)
 hab.comencar()
