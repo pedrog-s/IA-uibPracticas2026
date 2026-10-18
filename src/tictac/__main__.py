@@ -1,5 +1,5 @@
 from tictac import joc
-from tictac.solucio import agent as agent
+from tictac import agent 
 
 
 def main():
