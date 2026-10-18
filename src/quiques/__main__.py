@@ -1,8 +1,8 @@
-from quiques import agent_amplada, agent_profunditat, joc
+from quiques import agent_amplada, agent_profunditat, joc, agent_informat
 
 
 def main():
-    barca = agent_amplada.BarcaAmplada()
+    barca = agent_informat.BarcaGreedy()
     illes = joc.Joc([barca])
     illes.comencar()
 
