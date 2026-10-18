@@ -33,6 +33,11 @@ def monedes():
     run_module("monedes")
 
 @app.command()
+def tictac():
+    """ Executa la tasca tic-tac-toe"""
+    run_module("tictac")
+    
+@app.command()
 def prova():
     """ Test per si tot ha funcionat correctament"""
     print("Tot ha funcionat")
