@@ -65,12 +65,10 @@ def __diagonal_check(taulell, posicio, desp, dificultat):
             count += 1
         else:
             continu = False
-            if count > best_lineal:
-                best_lineal = count
+            best_lineal = max(best_lineal, count)
             count = 0
 
-    if count > best_lineal:
-        best_lineal = count
+    best_lineal = max(best_lineal, count)
 
     return best_lineal >= dificultat
 
@@ -101,9 +99,7 @@ def __linear_check(taulell, posicio, dificultat, vertical=False):
             min(pos_1 + dificultat, len(taulell)),
             1,
     ):
-        i, j = x, pos_2
-        if vertical:
-            i, j = j, i
+        i, j = (x, pos_2) if vertical else (pos_1, x)
 
         if fitxa is None and taulell[i][j] in ("X", "0"):
             fitxa = taulell[i][j]
@@ -114,11 +110,9 @@ def __linear_check(taulell, posicio, dificultat, vertical=False):
             count += 1
         else:
             continu = False
-            if count > best_lineal:
-                best_lineal = count
+            best_lineal = max(best_lineal, count)
             count = 0
 
-    if count > best_lineal:
-        best_lineal = count
+    best_lineal = max(best_lineal, count)
 
     return best_lineal >= dificultat
